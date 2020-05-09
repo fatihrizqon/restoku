@@ -1,0 +1,90 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <!-- CSS Assets -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">RestoKu</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                  <!-- <li class="nav-item">
+                    <a class="nav-link" href="/menu">Menu</a>
+                  </li> -->
+                  <li class="nav-item">
+                      <a class="nav-link" href="/branch">Branch</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/contact">Contact</a>
+                  </li>
+                  <form method="GET" class="form-inline my-2 my-lg-0" action="{% url 'search' %}">
+                    <input class="form-control mr-sm-2" name="q" type="search" placeholder="Find your menu" aria-label="Search" value="{{request.GET.q}}">
+                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+              </ul>
+            </div>
+        </div>    
+    </nav>
+    <main class="container">
+      <div class="col-md-12 row justify-content-center">
+        <div class="">
+          <h3>Select your favourite menu :</h3>
+          {% for row in category %}
+          <a href="/menu/{{row.catslug}}" class="btn btn-outline-dark btn-sm">{{ row.category }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      <hr>
+
+      <div class="col-md-12 row d-flex justify-content-center">
+        {% for row in data %}
+        <div class="card food-card mb-3">
+          <div class="card-header">
+            {{ row.category }}
+          </div>
+          <img class="card-img-top food-cover" src="{{row.image}}">
+          <div class="card-body">
+            <h5 class="card-title">{{row.name}} - {{row.price}}</h5>
+            <p class="card-text">{{row.description}}</p>
+            <hr>
+            <div class="row justify-content-center card-action">
+              <a href="#" class="card-link btn btn-outline-primary justify-content-end btn-md">Dine in</a>
+              <a href="#" class="card-link btn btn-outline-secondary justify-content-end btn-md">Take away</a>
+            </div>
+          </div>
+          <!-- <ul class="list-group list-group-flush">
+            <li class="list-group-item">Price :</li>
+          </ul> -->
+        </div>
+        {% endfor %}
+      </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  </body>
+</html>

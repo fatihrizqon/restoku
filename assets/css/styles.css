@@ -1,0 +1,28 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:300,400,600);
+body{
+    margin: 0;
+    font-size: .9rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #212529;
+    text-align: left;
+    background-color: #ffffff;
+    font-family: 'Manrope', sans-serif;
+}
+
+.food-card{
+    margin: 10px !important;
+    width: 18rem;
+    height: 450px;
+}
+
+.food-cover{
+    height: 200px;
+    width: 100%;
+}
+.card-body{
+    height: 200px;
+}
+.card-action{
+    padding: 15px;
+}
